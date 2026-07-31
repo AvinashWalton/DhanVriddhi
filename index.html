@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>धनवृद्धि (DhanVriddhi) — फ्री SIP, Lumpsum, EMI, FD और Retirement कैलकुलेटर</title>
+<meta name="description" content="धनवृद्धि पर फ्री SIP कैलकुलेटर, Lumpsum कैलकुलेटर, EMI कैलकुलेटर, FD कैलकुलेटर, SWP कैलकुलेटर और Retirement Planning टूल इस्तेमाल करें। म्यूचुअल फंड रिटर्न, होम लोन EMI और निवेश की पूरी जानकारी हिंदी में।">
+<meta name="keywords" content="SIP calculator, mutual fund calculator, lumpsum calculator, EMI calculator, FD calculator, SWP calculator, retirement calculator, SIP कैलकुलेटर हिंदी, dhanvriddhi">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://your-username.github.io/dhanvriddhi/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="धनवृद्धि — फ्री SIP, Lumpsum, EMI, FD और Retirement कैलकुलेटर">
+<meta property="og:description" content="अपने निवेश का सही हिसाब लगाएं — SIP, Lumpsum, EMI, FD, SWP और Retirement के लिए फ्री ऑनलाइन कैलकुलेटर।">
+<meta property="og:url" content="https://your-username.github.io/dhanvriddhi/">
+<meta property="og:locale" content="hi_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="धनवृद्धि — फ्री निवेश कैलकुलेटर सुइट">
+<meta name="twitter:description" content="SIP, Lumpsum, EMI, FD, SWP और Retirement कैलकुलेटर — एक ही जगह, बिल्कुल फ्री।">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230B1730'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%23C9973E' font-family='Georgia,serif'%3E%E0%A5%B9%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "DhanVriddhi",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"},
+  "description": "फ्री SIP, Lumpsum, EMI, FD, SWP और Retirement कैलकुलेटर।"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "SIP कैलकुलेटर कैसे काम करता है?",
+     "acceptedAnswer": {"@type": "Answer", "text": "SIP कैलकुलेटर आपकी मासिक निवेश राशि, अपेक्षित सालाना रिटर्न और निवेश की अवधि के आधार पर चक्रवृद्धि ब्याज (compounding) के फॉर्मूले से भविष्य की कुल राशि निकालता है।"}},
+    {"@type": "Question", "name": "SIP में कितना रिटर्न मिल सकता है?",
+     "acceptedAnswer": {"@type": "Answer", "text": "यह मार्केट पर निर्भर करता है। इक्विटी म्यूचुअल फंड में लंबी अवधि में ऐतिहासिक रूप से 10% से 14% सालाना रिटर्न देखा गया है, लेकिन यह गारंटीड नहीं है और बाज़ार जोखिम के अधीन है।"}},
+    {"@type": "Question", "name": "SIP और Lumpsum में क्या फर्क है?",
+     "acceptedAnswer": {"@type": "Answer", "text": "SIP में आप हर महीने एक तय राशि निवेश करते हैं जबकि Lumpsum में पूरी राशि एक बार में निवेश की जाती है। SIP रुपी कॉस्ट एवरेजिंग का फायदा देता है, जबकि Lumpsum बड़ी राशि होने पर उपयुक्त है।"}}
+  ]
+}
+</script>
+
+<style>
+:root{
+  --navy-900:#0B1730;
+  --navy-800:#132449;
+  --navy-700:#1B2F5C;
+  --gold-500:#C9973E;
+  --gold-300:#E8C77E;
+  --gold-100:#F6E9CC;
+  --cream-50:#FAF6ED;
+  --cream-100:#F1E9D8;
+  --green-600:#1E8F5F;
+  --green-100:#DEF2E7;
+  --ink-900:#161A22;
+  --ink-600:#4A5266;
+  --white:#FFFFFF;
+  --radius:14px;
+  --shadow:0 20px 50px -20px rgba(11,23,48,0.35);
+  --font-en:'IBM Plex Sans','IBM Plex Sans Devanagari',sans-serif;
+  --font-hi:'IBM Plex Sans Devanagari','IBM Plex Sans',sans-serif;
+  --font-num:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--font-hi);
+  color:var(--ink-900);
+  background:var(--cream-50);
+  line-height:1.6;
+}
+img,canvas{max-width:100%;}
+a{color:inherit;}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+}
+
+/* ===== Header ===== */
+header.site{
+  position:sticky;top:0;z-index:50;
+  background:rgba(11,23,48,0.96);
+  backdrop-filter:blur(6px);
+  color:var(--white);
+  border-bottom:1px solid rgba(201,151,62,0.25);
+}
+.nav-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.25rem;letter-spacing:0.2px;text-decoration:none;color:var(--white);}
+.logo .mark{
+  width:34px;height:34px;border-radius:9px;
+  background:linear-gradient(155deg,var(--gold-300),var(--gold-500));
+  display:flex;align-items:center;justify-content:center;
+  color:var(--navy-900);font-family:Georgia,serif;font-weight:700;font-size:1.15rem;
+}
+nav.tools{display:flex;gap:4px;flex-wrap:wrap;}
+nav.tools a{
+  font-family:var(--font-en);font-size:0.85rem;font-weight:500;
+  color:var(--cream-100);text-decoration:none;padding:8px 12px;border-radius:8px;
+  transition:background 0.15s, color 0.15s;
+  white-space:nowrap;
+}
+nav.tools a:hover, nav.tools a:focus-visible{background:rgba(201,151,62,0.18);color:var(--gold-300);outline:none;}
+.nav-toggle{display:none;background:none;border:1px solid rgba(255,255,255,0.3);color:var(--white);border-radius:8px;padding:8px 10px;font-size:1rem;}
+@media (max-width:860px){
+  nav.tools{display:none;position:absolute;top:64px;left:0;right:0;background:var(--navy-900);flex-direction:column;padding:10px 24px 18px;border-bottom:1px solid rgba(201,151,62,0.25);}
+  nav.tools.open{display:flex;}
+  nav.tools a{padding:12px 8px;border-bottom:1px solid rgba(255,255,255,0.06);border-radius:0;}
+  .nav-toggle{display:block;}
+}
+
+/* ===== Hero ===== */
+.hero{
+  background:radial-gradient(1200px 600px at 85% -10%, rgba(201,151,62,0.18), transparent 60%), var(--navy-900);
+  color:var(--white);
+  padding:52px 0 70px;
+  position:relative;
+  overflow:hidden;
+}
+.hero:before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(201,151,62,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,151,62,0.06) 1px, transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(to bottom, rgba(0,0,0,0.7), transparent 75%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:start;}
+@media (max-width:920px){.hero-inner{grid-template-columns:1fr;}}
+.eyebrow{
+  font-family:var(--font-en);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold-300);font-weight:600;display:flex;align-items:center;gap:8px;margin-bottom:14px;
+}
+.eyebrow:before{content:"";width:22px;height:1px;background:var(--gold-500);display:inline-block;}
+h1.hero-title{
+  font-family:var(--font-hi);font-weight:700;
+  font-size:clamp(1.9rem, 3.6vw, 2.7rem);
+  margin:0 0 14px;line-height:1.25;
+}
+h1.hero-title .accent{color:var(--gold-300);}
+.hero-sub{color:var(--cream-100);font-size:1.02rem;max-width:52ch;margin:0 0 28px;}
+
+/* Calculator card */
+.calc-card{
+  background:var(--white);color:var(--ink-900);
+  border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);
+}
+.calc-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;}
+.calc-tab{
+  font-family:var(--font-en);font-size:0.82rem;font-weight:600;
+  background:var(--cream-100);color:var(--ink-600);border:none;border-radius:999px;
+  padding:8px 14px;cursor:pointer;transition:all 0.15s;
+}
+.calc-tab.active{background:var(--navy-900);color:var(--gold-300);}
+.calc-tab:focus-visible{outline:2px solid var(--gold-500);outline-offset:2px;}
+
+.field{margin-bottom:20px;}
+.field-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:10px;}
+.field-label{font-family:var(--font-hi);font-size:0.92rem;font-weight:600;color:var(--ink-900);}
+.field-value{font-family:var(--font-num);font-weight:600;color:var(--navy-800);font-size:0.95rem;background:var(--gold-100);padding:3px 10px;border-radius:7px;white-space:nowrap;}
+input[type=range]{
+  width:100%;height:6px;border-radius:999px;background:var(--cream-100);
+  appearance:none;-webkit-appearance:none;outline:none;
+}
+input[type=range]::-webkit-slider-thumb{
+  appearance:none;-webkit-appearance:none;width:20px;height:20px;border-radius:50%;
+  background:var(--gold-500);border:3px solid var(--white);box-shadow:0 2px 8px rgba(11,23,48,0.35);cursor:pointer;
+}
+input[type=range]::-moz-range-thumb{
+  width:20px;height:20px;border-radius:50%;background:var(--gold-500);border:3px solid var(--white);
+  box-shadow:0 2px 8px rgba(11,23,48,0.35);cursor:pointer;
+}
+input[type=number]{
+  font-family:var(--font-num);font-size:0.95rem;width:100%;padding:9px 11px;
+  border:1.5px solid var(--cream-100);border-radius:8px;background:var(--cream-50);color:var(--ink-900);
+}
+input[type=number]:focus-visible, input[type=range]:focus-visible{outline:2px solid var(--gold-500);outline-offset:2px;}
+
+.result-strip{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+@media (max-width:420px){.result-strip{grid-template-columns:1fr;}}
+.result-box{background:var(--cream-50);border-radius:10px;padding:14px 16px;border:1px solid var(--cream-100);}
+.result-box.hi{background:var(--navy-900);color:var(--white);grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.result-label{font-family:var(--font-en);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-600);}
+.result-box.hi .result-label{color:var(--gold-300);}
+.result-num{font-family:var(--font-num);font-weight:600;font-size:1.28rem;color:var(--navy-800);margin-top:4px;}
+.result-box.hi .result-num{color:var(--white);font-size:1.55rem;}
+
+.chart-row{display:flex;align-items:center;gap:20px;margin-top:22px;flex-wrap:wrap;}
+.legend{display:flex;flex-direction:column;gap:10px;font-family:var(--font-en);font-size:0.85rem;}
+.legend-item{display:flex;align-items:center;gap:8px;}
+.dot{width:10px;height:10px;border-radius:50%;flex:none;}
+
+/* ===== Sections ===== */
+section.tools-panel{padding:64px 0;}
+.section-head{max-width:640px;margin:0 auto 40px;text-align:center;}
+.section-eyebrow{font-family:var(--font-en);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-500);font-weight:600;}
+.section-title{font-size:clamp(1.5rem,2.6vw,2rem);margin:8px 0 10px;font-weight:700;}
+.section-sub{color:var(--ink-600);font-size:0.98rem;}
+
+.grid-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media (max-width:860px){.grid-tools{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.grid-tools{grid-template-columns:1fr;}}
+.tool-card{
+  background:var(--white);border-radius:var(--radius);padding:22px;border:1px solid var(--cream-100);
+  cursor:pointer;transition:transform 0.15s, box-shadow 0.15s;text-align:left;
+}
+.tool-card:hover, .tool-card:focus-visible{transform:translateY(-3px);box-shadow:var(--shadow);outline:none;}
+.tool-icon{
+  width:42px;height:42px;border-radius:10px;background:var(--gold-100);color:var(--gold-500);
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-num);font-weight:700;margin-bottom:14px;
+}
+.tool-card h3{margin:0 0 6px;font-size:1.05rem;}
+.tool-card p{margin:0;color:var(--ink-600);font-size:0.88rem;}
+
+/* ===== Article ===== */
+.article-section{background:var(--white);padding:64px 0;}
+.article-body{max-width:760px;margin:0 auto;}
+.article-body h2{font-size:1.5rem;margin:36px 0 12px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{color:var(--ink-600);margin:0 0 16px;}
+.article-body ul{color:var(--ink-600);padding-inline-start:22px;}
+.article-body li{margin-bottom:8px;}
+.callout{
+  background:var(--green-100);border-inline-start:4px solid var(--green-600);
+  padding:16px 18px;border-radius:0 10px 10px 0;margin:20px 0;font-size:0.92rem;color:var(--ink-900);
+}
+
+/* ===== FAQ ===== */
+.faq-section{padding:64px 0;}
+.faq-item{background:var(--white);border:1px solid var(--cream-100);border-radius:12px;margin-bottom:12px;overflow:hidden;}
+.faq-q{
+  width:100%;text-align:start;background:none;border:none;padding:18px 20px;
+  font-family:var(--font-hi);font-weight:600;font-size:0.98rem;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--ink-900);
+}
+.faq-q .plus{font-family:var(--font-num);color:var(--gold-500);font-size:1.3rem;transition:transform 0.2s;flex:none;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.25s ease;}
+.faq-a p{margin:0;padding:0 20px 18px;color:var(--ink-600);font-size:0.92rem;}
+
+/* ===== Footer ===== */
+footer.site{background:var(--navy-900);color:var(--cream-100);padding:44px 0 26px;margin-top:20px;}
+.footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:26px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.footer-brand{max-width:340px;}
+.footer-brand .logo{margin-bottom:10px;}
+.footer-brand p{font-size:0.85rem;color:rgba(241,233,216,0.7);}
+.footer-links{display:flex;gap:50px;flex-wrap:wrap;}
+.footer-col h4{font-family:var(--font-en);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold-300);margin:0 0 12px;}
+.footer-col a{display:block;font-size:0.87rem;color:rgba(241,233,216,0.85);text-decoration:none;margin-bottom:9px;}
+.footer-col a:hover{color:var(--gold-300);}
+.disclaimer{font-size:0.76rem;color:rgba(241,233,216,0.5);padding-top:18px;line-height:1.7;}
+
+/* Ad slot placeholders */
+.ad-slot{
+  max-width:1140px;margin:0 auto;padding:0 24px;
+}
+.ad-slot .ad-box{
+  border:1.5px dashed var(--cream-100);border-radius:10px;padding:14px;
+  text-align:center;font-family:var(--font-en);font-size:0.72rem;color:var(--ink-600);
+  letter-spacing:0.05em;text-transform:uppercase;background:var(--white);
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a class="logo" href="#top">
+      <span class="mark">₹</span>
+      <span>धनवृद्धि <span style="font-family:var(--font-en);font-weight:400;color:var(--gold-300);font-size:0.7rem;display:block;letter-spacing:0.08em;">DHANVRIDDHI</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="मेनू खोलें" aria-expanded="false">☰</button>
+    <nav class="tools" id="navTools">
+      <a href="#calculator" data-tool="sip">SIP कैलकुलेटर</a>
+      <a href="#calculator" data-tool="lumpsum">Lumpsum</a>
+      <a href="#calculator" data-tool="swp">SWP</a>
+      <a href="#calculator" data-tool="emi">EMI</a>
+      <a href="#calculator" data-tool="fd">FD</a>
+      <a href="#calculator" data-tool="retire">Retirement</a>
+      <a href="#article">गाइड पढ़ें</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" id="calculator">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow">100% फ्री · कोई साइनअप नहीं</div>
+      <h1 class="hero-title">अपने पैसे को <span class="accent">बढ़ते</span> हुए देखें, हर कैलकुलेशन से पहले</h1>
+      <p class="hero-sub">SIP, Lumpsum, EMI, FD, SWP और Retirement — एक ही जगह पर सटीक और तेज़ कैलकुलेटर। स्लाइडर खिसकाएं और तुरंत नतीजा देखें, कोई ऐप डाउनलोड करने की ज़रूरत नहीं।</p>
+
+      <div class="calc-tabs" id="calcTabs" role="tablist">
+        <button class="calc-tab active" data-tool="sip" role="tab" aria-selected="true">SIP</button>
+        <button class="calc-tab" data-tool="lumpsum" role="tab" aria-selected="false">Lumpsum</button>
+        <button class="calc-tab" data-tool="swp" role="tab" aria-selected="false">SWP</button>
+        <button class="calc-tab" data-tool="emi" role="tab" aria-selected="false">EMI</button>
+        <button class="calc-tab" data-tool="fd" role="tab" aria-selected="false">FD</button>
+        <button class="calc-tab" data-tool="retire" role="tab" aria-selected="false">Retirement</button>
+      </div>
+    </div>
+
+    <div class="calc-card">
+      <div id="calcFields"></div>
+      <div class="chart-row">
+        <canvas id="donut" width="150" height="150" role="img" aria-label="निवेश बनाम रिटर्न चार्ट"></canvas>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="result-strip" id="resultStrip"></div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot" style="margin-top:-20px;">
+  <div class="ad-box">विज्ञापन स्थान — Google AdSense यहाँ लगाएं (728×90 / Responsive)</div>
+</div>
+
+<section class="tools-panel">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">पूरा टूलकिट</div>
+      <div class="section-title">हर ज़रूरत के लिए एक कैलकुलेटर</div>
+      <div class="section-sub">नीचे किसी भी कार्ड पर क्लिक करें और तुरंत उस कैलकुलेटर पर पहुंच जाएं।</div>
+    </div>
+    <div class="grid-tools">
+      <button class="tool-card" data-tool="sip"><div class="tool-icon">SIP</div><h3>SIP कैलकुलेटर</h3><p>मासिक निवेश से मिलने वाला भविष्य का फंड जानें।</p></button>
+      <button class="tool-card" data-tool="lumpsum"><div class="tool-icon">LS</div><h3>Lumpsum कैलकुलेटर</h3><p>एकमुश्त निवेश पर मिलने वाला रिटर्न कैलकुलेट करें।</p></button>
+      <button class="tool-card" data-tool="swp"><div class="tool-icon">SWP</div><h3>SWP कैलकुलेटर</h3><p>रिटायरमेंट के बाद मासिक निकासी की योजना बनाएं।</p></button>
+      <button class="tool-card" data-tool="emi"><div class="tool-icon">EMI</div><h3>EMI कैलकुलेटर</h3><p>होम लोन, कार लोन या पर्सनल लोन की EMI जानें।</p></button>
+      <button class="tool-card" data-tool="fd"><div class="tool-icon">FD</div><h3>FD कैलकुलेटर</h3><p>फिक्स्ड डिपॉज़िट पर मैच्योरिटी अमाउंट निकालें।</p></button>
+      <button class="tool-card" data-tool="retire"><div class="tool-icon">RT</div><h3>Retirement Planner</h3><p>रिटायरमेंट के लिए कितना कोष चाहिए, अभी जानें।</p></button>
+    </div>
+  </div>
+</section>
+
+<section class="article-section" id="article">
+  <div class="wrap article-body">
+    <div class="section-eyebrow" style="text-align:center;display:block;">निवेश गाइड</div>
+    <h2 style="text-align:center;">SIP क्या है और यह आपके पैसे कैसे बढ़ाता है?</h2>
+    <p>SIP यानी Systematic Investment Plan, म्यूचुअल फंड में निवेश करने का एक अनुशासित तरीका है। इसमें आप हर महीने एक तय राशि — चाहे वह ₹500 हो या ₹50,000 — अपने चुने हुए फंड में निवेश करते हैं। यह राशि आपके बैंक खाते से ऑटोमेटिक कट जाती है, जिससे निवेश की आदत बिना किसी अतिरिक्त मेहनत के बन जाती है। SIP की सबसे बड़ी खूबी है Rupee Cost Averaging — जब बाज़ार गिरता है तो आपको उसी राशि में ज़्यादा यूनिट्स मिलती हैं, और जब बाज़ार ऊपर जाता है तो कम यूनिट्स, जिससे लंबी अवधि में औसत खरीद कीमत संतुलित रहती है।</p>
+
+    <h2>चक्रवृद्धि ब्याज़ की ताकत</h2>
+    <p>SIP कैलकुलेटर के पीछे का गणित चक्रवृद्धि ब्याज़ (Compounding) पर आधारित है। इसका मतलब है कि आपके निवेश पर मिलने वाला रिटर्न भी अगले साल निवेश की तरह काम करता है, यानी रिटर्न पर भी रिटर्न मिलता है। यही वजह है कि जल्दी शुरू किया गया छोटा निवेश, देर से शुरू किए गए बड़े निवेश से बेहतर नतीजे दे सकता है। उदाहरण के लिए, 25 साल की उम्र में शुरू किया गया ₹5,000 मासिक SIP, 35 साल की उम्र में शुरू किए गए ₹10,000 के SIP से भी ज़्यादा फंड बना सकता है — सिर्फ समय के फायदे की वजह से।</p>
+
+    <div class="callout">ध्यान दें: म्यूचुअल फंड निवेश बाज़ार जोखिमों के अधीन हैं। इस पेज पर दिखाए गए रिटर्न सिर्फ अनुमान हैं, ये कोई गारंटी नहीं देते। निवेश से पहले फंड के दस्तावेज़ ज़रूर पढ़ें।</div>
+
+    <h2>SIP कैलकुलेटर का इस्तेमाल कैसे करें?</h2>
+    <p>ऊपर दिए गए कैलकुलेटर में तीन आसान चीज़ें डालनी हैं — मासिक निवेश राशि, अपेक्षित सालाना रिटर्न (%) और निवेश की अवधि (सालों में)। स्लाइडर खिसकाते ही आपको तुरंत तीन नतीजे दिखेंगे: आपने कुल कितना निवेश किया, कितना अनुमानित रिटर्न मिला, और मैच्योरिटी पर आपके पास कितनी कुल राशि होगी। यही प्रक्रिया Lumpsum, EMI, FD, SWP और Retirement कैलकुलेटर के लिए भी लागू होती है — बस टैब बदलें और अपने हिसाब से आंकड़े डालें।</p>
+
+    <h2>निवेश शुरू करने से पहले ध्यान रखने वाली बातें</h2>
+    <ul>
+      <li>अपने वित्तीय लक्ष्य (गोल) तय करें — जैसे घर, बच्चों की पढ़ाई या रिटायरमेंट।</li>
+      <li>इमरजेंसी फंड (कम से कम 6 महीने के खर्च जितना) पहले बना लें।</li>
+      <li>अपनी जोखिम क्षमता के अनुसार इक्विटी, डेट या हाइब्रिड फंड चुनें।</li>
+      <li>लंबी अवधि के लक्ष्यों के लिए SIP को बीच में रोकने से बचें, खासकर बाज़ार गिरने पर।</li>
+      <li>साल में एक बार अपने पोर्टफोलियो की समीक्षा ज़रूर करें।</li>
+    </ul>
+    <p>यह कैलकुलेटर केवल शैक्षणिक और अनुमानित जानकारी के लिए है। निवेश से जुड़ा कोई भी बड़ा फैसला लेने से पहले किसी सेबी-रजिस्टर्ड वित्तीय सलाहकार से सलाह लेना बेहतर रहेगा।</p>
+  </div>
+</section>
+
+<div class="ad-slot">
+  <div class="ad-box">विज्ञापन स्थान — In-article Ad Unit</div>
+</div>
+
+<section class="faq-section">
+  <div class="wrap" style="max-width:760px;">
+    <div class="section-head">
+      <div class="section-eyebrow">अक्सर पूछे जाने वाले सवाल</div>
+      <div class="section-title">FAQs</div>
+    </div>
+    <div id="faqList"></div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#top"><span class="mark">₹</span><span>धनवृद्धि</span></a>
+        <p>भारत के लिए बना एक फ्री, फास्ट और सिंपल निवेश कैलकुलेटर सुइट। कोई लॉगिन नहीं, कोई डेटा स्टोर नहीं — सब कुछ आपके ब्राउज़र में ही होता है।</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Calculators</h4>
+          <a href="#calculator" data-tool="sip">SIP</a>
+          <a href="#calculator" data-tool="lumpsum">Lumpsum</a>
+          <a href="#calculator" data-tool="emi">EMI</a>
+          <a href="#calculator" data-tool="fd">FD</a>
+        </div>
+        <div class="footer-col">
+          <h4>More</h4>
+          <a href="#calculator" data-tool="swp">SWP</a>
+          <a href="#calculator" data-tool="retire">Retirement</a>
+          <a href="#article">निवेश गाइड</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <p class="disclaimer">डिस्क्लेमर: धनवृद्धि कोई वित्तीय सलाहकार या SEBI-रजिस्टर्ड संस्था नहीं है। यहाँ दिए गए सभी कैलकुलेटर सिर्फ अनुमानित परिणाम दिखाते हैं, जो मान्य निवेश सलाह नहीं हैं। © 2026 DhanVriddhi. सभी अधिकार सुरक्षित।</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  const fmt = n => "₹" + Math.round(n).toLocaleString("en-IN");
+  const $ = sel => document.querySelector(sel);
+  const fieldsEl = $("#calcFields");
+  const stripEl = $("#resultStrip");
+  const legendEl = $("#legend");
+  const canvas = $("#donut");
+  const ctx = canvas.getContext("2d");
+
+  function drawDonut(a, b, colorA, colorB){
+    const total = a + b;
+    const cx = 75, cy = 75, r = 60, lw = 20;
+    ctx.clearRect(0,0,150,150);
+    if(total <= 0){
+      ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+      ctx.strokeStyle = "#F1E9D8"; ctx.lineWidth = lw; ctx.stroke();
+      return;
+    }
+    let start = -Math.PI/2;
+    [[a,colorA],[b,colorB]].forEach(([val,color])=>{
+      const frac = val/total;
+      const end = start + frac*Math.PI*2;
+      ctx.beginPath();
+      ctx.arc(cx,cy,r,start,end);
+      ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.lineCap = "butt";
+      ctx.stroke();
+      start = end;
+    });
+  }
+
+  function legendHtml(items){
+    return items.map(([label,color,val])=>
+      `<div class="legend-item"><span class="dot" style="background:${color}"></span>${label}: <strong style="font-family:var(--font-num)">${fmt(val)}</strong></div>`
+    ).join("");
+  }
+
+  // ---- Tool definitions ----
+  const TOOLS = {
+    sip: {
+      title:"SIP कैलकुलेटर",
+      fields:[
+        {id:"amt", label:"मासिक निवेश (₹)", min:500, max:200000, step:500, val:10000, fmt:v=>fmt(v)},
+        {id:"rate", label:"अपेक्षित सालाना रिटर्न (%)", min:1, max:30, step:0.5, val:12, fmt:v=>v+"%"},
+        {id:"years", label:"निवेश अवधि (साल)", min:1, max:40, step:1, val:15, fmt:v=>v+" साल"}
+      ],
+      calc:(v)=>{
+        const r = v.rate/100/12, n = v.years*12;
+        const fv = v.amt * ((Math.pow(1+r,n)-1)/r) * (1+r);
+        const invested = v.amt*n;
+        return {invested, returns: fv-invested, total: fv};
+      }
+    },
+    lumpsum: {
+      title:"Lumpsum कैलकुलेटर",
+      fields:[
+        {id:"amt", label:"एकमुश्त निवेश (₹)", min:1000, max:5000000, step:1000, val:100000, fmt:v=>fmt(v)},
+        {id:"rate", label:"अपेक्षित सालाना रिटर्न (%)", min:1, max:30, step:0.5, val:12, fmt:v=>v+"%"},
+        {id:"years", label:"निवेश अवधि (साल)", min:1, max:40, step:1, val:10, fmt:v=>v+" साल"}
+      ],
+      calc:(v)=>{
+        const fv = v.amt * Math.pow(1+v.rate/100, v.years);
+        return {invested:v.amt, returns: fv-v.amt, total: fv};
+      }
+    },
+    swp: {
+      title:"SWP कैलकुलेटर",
+      fields:[
+        {id:"corpus", label:"कुल कोष (₹)", min:100000, max:20000000, step:50000, val:2000000, fmt:v=>fmt(v)},
+        {id:"withdraw", label:"मासिक निकासी (₹)", min:1000, max:200000, step:500, val:15000, fmt:v=>fmt(v)},
+        {id:"rate", label:"अपेक्षित सालाना रिटर्न (%)", min:1, max:20, step:0.5, val:8, fmt:v=>v+"%"},
+        {id:"years", label:"अवधि (साल)", min:1, max:40, step:1, val:15, fmt:v=>v+" साल"}
+      ],
+      calc:(v)=>{
+        const r = v.rate/100/12, n = v.years*12;
+        let bal = v.corpus, totalWithdrawn = 0;
+        for(let i=0;i<n && bal>0;i++){
+          bal = bal*(1+r) - v.withdraw;
+          totalWithdrawn += v.withdraw;
+          if(bal < 0){ totalWithdrawn += bal; bal = 0; }
+        }
+        return {invested: v.corpus, returns: Math.max(totalWithdrawn - (v.corpus-Math.max(bal,0)),0), total: Math.max(bal,0), withdrawn: totalWithdrawn};
+      },
+      customStrip:(res,v)=>[
+        {label:"कुल निकासी", val:res.withdrawn},
+        {label:"बचा हुआ बैलेंस", val:res.total, hi:true}
+      ]
+    },
+    emi: {
+      title:"EMI कैलकुलेटर",
+      fields:[
+        {id:"amt", label:"लोन राशि (₹)", min:50000, max:20000000, step:10000, val:2500000, fmt:v=>fmt(v)},
+        {id:"rate", label:"सालाना ब्याज दर (%)", min:1, max:20, step:0.1, val:8.5, fmt:v=>v+"%"},
+        {id:"years", label:"लोन अवधि (साल)", min:1, max:30, step:1, val:20, fmt:v=>v+" साल"}
+      ],
+      calc:(v)=>{
+        const r = v.rate/100/12, n = v.years*12;
+        const emi = v.amt * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+        const totalPay = emi*n;
+        return {invested:v.amt, returns: totalPay-v.amt, total: totalPay, emi};
+      },
+      customStrip:(res,v)=>[
+        {label:"मासिक EMI", val:res.emi, hi:true},
+        {label:"कुल ब्याज़", val:res.returns},
+        {label:"कुल भुगतान", val:res.total}
+      ]
+    },
+    fd: {
+      title:"FD कैलकुलेटर",
+      fields:[
+        {id:"amt", label:"निवेश राशि (₹)", min:5000, max:5000000, step:5000, val:100000, fmt:v=>fmt(v)},
+        {id:"rate", label:"सालाना ब्याज दर (%)", min:1, max:15, step:0.1, val:7, fmt:v=>v+"%"},
+        {id:"years", label:"अवधि (साल)", min:1, max:20, step:1, val:5, fmt:v=>v+" साल"}
+      ],
+      calc:(v)=>{
+        const comp = 4;
+        const fv = v.amt * Math.pow(1 + (v.rate/100)/comp, comp*v.years);
+        return {invested:v.amt, returns: fv-v.amt, total: fv};
+      }
+    },
+    retire: {
+      title:"Retirement Planner",
+      fields:[
+        {id:"expense", label:"आज का मासिक खर्च (₹)", min:5000, max:500000, step:1000, val:40000, fmt:v=>fmt(v)},
+        {id:"years", label:"रिटायरमेंट में बचे साल", min:1, max:40, step:1, val:25, fmt:v=>v+" साल"},
+        {id:"inflation", label:"महंगाई दर (%)", min:2, max:12, step:0.5, val:6, fmt:v=>v+"%"},
+        {id:"rate", label:"निवेश पर अपेक्षित रिटर्न (%)", min:4, max:20, step:0.5, val:11, fmt:v=>v+"%"}
+      ],
+      calc:(v)=>{
+        const futureMonthlyExpense = v.expense * Math.pow(1+v.inflation/100, v.years);
+        const annualExpense = futureMonthlyExpense*12;
+        const corpus = annualExpense * 25;
+        const r = v.rate/100/12, n = v.years*12;
+        const requiredSip = corpus / (((Math.pow(1+r,n)-1)/r) * (1+r));
+        return {invested:0, returns:0, total: corpus, requiredSip, futureMonthlyExpense};
+      },
+      customStrip:(res,v)=>[
+        {label:"रिटायरमेंट के समय ज़रूरी मासिक खर्च", val:res.futureMonthlyExpense},
+        {label:"ज़रूरी कुल रिटायरमेंट कोष", val:res.total, hi:true},
+        {label:"अभी से ज़रूरी मासिक SIP", val:res.requiredSip}
+      ]
+    }
+  };
+
+  const COLOR_A = "#C9973E"; // invested / principal
+  const COLOR_B = "#1E8F5F"; // returns
+
+  let current = "sip";
+
+  function renderTool(id){
+    current = id;
+    const tool = TOOLS[id];
+    document.querySelectorAll(".calc-tab").forEach(b=>{
+      const active = b.dataset.tool === id;
+      b.classList.toggle("active", active);
+      b.setAttribute("aria-selected", active);
+    });
+
+    fieldsEl.innerHTML = tool.fields.map(f => `
+      <div class="field">
+        <div class="field-head">
+          <label class="field-label" for="f_${f.id}">${f.label}</label>
+          <span class="field-value" id="v_${f.id}">${f.fmt(f.val)}</span>
+        </div>
+        <input type="range" id="f_${f.id}" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.val}">
+      </div>
+    `).join("");
+
+    tool.fields.forEach(f=>{
+      $("#f_"+f.id).addEventListener("input", ()=>compute());
+    });
+
+    compute();
+  }
+
+  function compute(){
+    const tool = TOOLS[current];
+    const v = {};
+    tool.fields.forEach(f=>{
+      const el = $("#f_"+f.id);
+      const val = parseFloat(el.value);
+      v[f.id] = val;
+      $("#v_"+f.id).textContent = f.fmt(val);
+    });
+
+    const res = tool.calc(v);
+
+    if(current === "sip" || current === "lumpsum"){
+      drawDonut(res.invested, Math.max(res.returns,0), COLOR_A, COLOR_B);
+      legendEl.innerHTML = legendHtml([
+        ["निवेशित राशि", COLOR_A, res.invested],
+        ["अनुमानित रिटर्न", COLOR_B, Math.max(res.returns,0)]
+      ]);
+      stripEl.innerHTML = `
+        <div class="result-box"><div class="result-label">निवेशित राशि</div><div class="result-num">${fmt(res.invested)}</div></div>
+        <div class="result-box"><div class="result-label">अनुमानित रिटर्न</div><div class="result-num">${fmt(res.returns)}</div></div>
+        <div class="result-box hi"><div><div class="result-label">कुल राशि (मैच्योरिटी वैल्यू)</div><div class="result-num">${fmt(res.total)}</div></div></div>
+      `;
+    } else if(current === "fd"){
+      drawDonut(res.invested, Math.max(res.returns,0), COLOR_A, COLOR_B);
+      legendEl.innerHTML = legendHtml([
+        ["जमा राशि", COLOR_A, res.invested],
+        ["ब्याज़", COLOR_B, Math.max(res.returns,0)]
+      ]);
+      stripEl.innerHTML = `
+        <div class="result-box"><div class="result-label">जमा राशि</div><div class="result-num">${fmt(res.invested)}</div></div>
+        <div class="result-box"><div class="result-label">कुल ब्याज़</div><div class="result-num">${fmt(res.returns)}</div></div>
+        <div class="result-box hi"><div><div class="result-label">मैच्योरिटी राशि</div><div class="result-num">${fmt(res.total)}</div></div></div>
+      `;
+    } else {
+      const items = tool.customStrip(res, v);
+      const a = items[0].val, b = items.length>2 ? items[1].val : items[0].val;
+      drawDonut(Math.max(a,0), Math.max(b,0), COLOR_A, COLOR_B);
+      legendEl.innerHTML = legendHtml([
+        [items[0].label, COLOR_A, items[0].val],
+        [items[1] ? items[1].label : items[0].label, COLOR_B, items[1] ? items[1].val : 0]
+      ]);
+      stripEl.innerHTML = items.map(it => `
+        <div class="result-box ${it.hi ? 'hi' : ''}"><div><div class="result-label">${it.label}</div><div class="result-num">${fmt(it.val)}</div></div></div>
+      `).join("");
+    }
+  }
+
+  document.querySelectorAll(".calc-tab").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      renderTool(btn.dataset.tool);
+      document.getElementById("calculator").scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  });
+
+  document.querySelectorAll("[data-tool]").forEach(el=>{
+    if(el.classList.contains("calc-tab")) return;
+    el.addEventListener("click", (e)=>{
+      const id = el.dataset.tool;
+      if(!id || !TOOLS[id]) return;
+      e.preventDefault();
+      renderTool(id);
+      document.getElementById("calculator").scrollIntoView({behavior:"smooth", block:"start"});
+      document.getElementById("navTools").classList.remove("open");
+    });
+  });
+
+  // mobile nav toggle
+  const navToggle = document.getElementById("navToggle");
+  const navTools = document.getElementById("navTools");
+  navToggle.addEventListener("click", ()=>{
+    const open = navTools.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", open);
+  });
+
+  renderTool("sip");
+
+  // ---- FAQ ----
+  const FAQS = [
+    ["SIP कैलकुलेटर कैसे काम करता है?","SIP कैलकुलेटर आपकी मासिक निवेश राशि, अपेक्षित सालाना रिटर्न और निवेश अवधि के आधार पर चक्रवृद्धि ब्याज़ के फॉर्मूले से भविष्य की कुल राशि निकालता है।"],
+    ["SIP में कितना रिटर्न मिल सकता है?","यह मार्केट पर निर्भर करता है। इक्विटी म्यूचुअल फंड में लंबी अवधि में ऐतिहासिक रूप से 10% से 14% सालाना रिटर्न देखा गया है, लेकिन यह गारंटीड नहीं है।"],
+    ["SIP और Lumpsum में क्या फर्क है?","SIP में हर महीने एक तय राशि निवेश होती है जबकि Lumpsum में पूरी राशि एक बार में निवेश की जाती है। SIP रुपी कॉस्ट एवरेजिंग का फायदा देता है।"],
+    ["क्या मैं SIP कभी भी बंद कर सकता हूँ?","हाँ, ज़्यादातर म्यूचुअल फंड SIP बिना किसी पेनल्टी के कभी भी रोके जा सकते हैं, लेकिन लंबी अवधि के लक्ष्यों के लिए इसे जारी रखना फायदेमंद रहता है।"],
+    ["क्या यह कैलकुलेटर टैक्स को ध्यान में रखता है?","नहीं, यह कैलकुलेटर सिर्फ ग्रॉस रिटर्न दिखाता है। कैपिटल गेन टैक्स और अन्य शुल्क इसमें शामिल नहीं हैं।"]
+  ];
+  document.getElementById("faqList").innerHTML = FAQS.map((f,i)=>`
+    <div class="faq-item" id="faq_${i}">
+      <button class="faq-q" aria-expanded="false">
+        <span>${f[0]}</span><span class="plus">+</span>
+      </button>
+      <div class="faq-a"><p>${f[1]}</p></div>
+    </div>
+  `).join("");
+  document.querySelectorAll(".faq-item").forEach(item=>{
+    const btn = item.querySelector(".faq-q");
+    const ans = item.querySelector(".faq-a");
+    btn.addEventListener("click", ()=>{
+      const open = item.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open);
+      ans.style.maxHeight = open ? ans.scrollHeight + "px" : null;
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
